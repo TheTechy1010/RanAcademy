@@ -1,0 +1,42 @@
+﻿@model RanAcademy.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <h4>Student Details</h4>
+            <hr />
+            <div class="dl-horizontal">
+                <h6>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </h6>
+                <h5>
+                    @Html.DisplayFor(model => model.FullName)
+                </h5>
+
+                <h6>
+                    @Html.DisplayNameFor(model => model.Mobile)
+                </h6>
+
+                <h5>
+                   +91- @Html.DisplayFor(model => model.Mobile)
+                </h5>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h4>Courses Taken by the Student</h4>
+            <hr />
+            <ul class="list-group">
+                @foreach (var c in ViewBag.YrCourses as List<RanAcademy.Models.StudentCourse>)
+                {
+                    <li class="list-group-item">@c.Course.Name</li>
+                }
+            </ul>
+        </div>
+    </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

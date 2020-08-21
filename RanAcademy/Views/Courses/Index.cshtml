@@ -1,0 +1,44 @@
+﻿@model IEnumerable<RanAcademy.Models.Course>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="container p-2 text-uppercase mb-3">
+    <h2 class="float-left">All Courses</h2>
+    <p class="float-right">
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+</div>
+<br/><br /><br />
+           <div class="row justify-content-lg-start justify-content-sm-center">
+
+               @foreach (var item in Model)
+               {
+                   
+               <div class="col-auto mt-1">
+                   <a href="/Courses/Details/@item.Id">
+                       <div class="card p-2" style="height:18rem;width:18rem;">
+                           @{
+                               var thumbnail = item.Thumbnail ?? "/Content/noPoster.png";
+                           }
+                           <img class="myImage d-flex mx-auto" src="@thumbnail" />
+                           <a href="/Courses/Details/@item.Id">
+                               <h5 class="text-left">@item.Name</h5>
+                           </a>
+                           <p class="lead" style="width:18rem;">
+                               @item.Description
+                           </p>
+                           <h5 class="font-weight-bold">₹@item.Price</h5>
+                           <hr />
+                           <div class="">
+                               @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+
+                               @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                           </div>
+                       </div>
+                   </a>
+                   
+               </div>
+               }
+
+           </div>
